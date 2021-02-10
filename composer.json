@@ -1,0 +1,23 @@
+{
+  "name": "duug-com-br/melhorenvio-sdk-php",
+  "description": "SDK PHP de integração com o melhor envio",
+  "keywords": ["sdk", "php", "melhor envio", "frete"],
+  "homepage": "https://github.com/duug-com-br/melhorenvio-sdk-php",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Igor Cacerez Albino",
+      "email": "igor.cacerez@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.0.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "@stable"
+  },
+  "autoload": {
+    "psr-4": { "MelhorEnvio\\" : "src/MelhorEnvio" }
+  }
+}
