@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba6a9b2b-e1fa-4eca-8555-2a68faa7a41d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MelhorEnvio/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/melhorenvio-sdk-php.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/melhorenvio-sdk-php.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MelhorEnvio/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MelhorEnvio/MelhorEnvio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/MelhorEnvio/MelhorEnvio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MelhorEnvio/SendCurl.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/MelhorEnvio/SendCurl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MelhorEnvio/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/MelhorEnvio/Product.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,6 +19,28 @@
       <executable />
     </execution>
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/src/MelhorEnvio/Product.php">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="298">
+                    <caret line="54" column="28" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="28" />
+                    <folding>
+                      <element signature="e#225#305#0#PHP" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
@@ -32,11 +52,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MelhorEnvio/MelhorEnvio.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="192" selection-start-line="192" selection-end-line="192" />
+            <state relative-caret-position="252">
+              <caret line="507" column="7" lean-forward="true" selection-start-line="507" selection-start-column="7" selection-end-line="507" selection-end-column="7" />
               <folding>
                 <element signature="e#807#1077#0#PHP" />
                 <element signature="e#820#957#0#PHP" />
@@ -45,20 +65,31 @@
                 <element signature="e#2606#3815#0#PHP" />
                 <element signature="e#4953#6332#0#PHP" />
                 <element signature="e#6132#6252#0#PHP" />
+                <element signature="e#7674#11154#0#PHP" />
+                <element signature="e#8953#9615#0#PHP" />
+                <element signature="e#6857#6895#0#PHP" />
+                <element signature="e#11461#14184#0#PHP" />
+                <element signature="e#14923#16349#0#PHP" />
+                <element signature="e#16003#16044#0#PHP" />
                 <element signature="e#6382#6461#0#PHP" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/MelhorEnvio/Product.php">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MelhorEnvio/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
+            <state relative-caret-position="266">
+              <caret line="123" column="7" lean-forward="true" selection-start-line="123" selection-start-column="7" selection-end-line="123" selection-end-column="7" />
               <folding>
-                <element signature="e#225#305#0#PHP" />
-                <element signature="e#487#1017#0#PHP" />
+                <element signature="e#344#500#0#PHP" />
+                <element signature="e#620#696#0#PHP" />
+                <element signature="e#1182#1799#0#PHP" />
+                <element signature="e#1333#1348#0#PHP" />
+                <element signature="e#1553#1719#0#PHP" />
+                <element signature="e#1957#2426#0#PHP" />
+                <element signature="e#2750#2817#0#PHP" />
               </folding>
             </state>
           </provider>
@@ -67,8 +98,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MelhorEnvio/SendCurl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="33" column="11" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
+            <state relative-caret-position="152">
+              <caret line="35" column="38" lean-forward="true" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -83,8 +114,9 @@
       <list>
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/src/MelhorEnvio/SendCurl.php" />
-        <option value="$PROJECT_DIR$/src/MelhorEnvio/MelhorEnvio.php" />
+        <option value="$PROJECT_DIR$/src/MelhorEnvio/User.php" />
         <option value="$PROJECT_DIR$/src/MelhorEnvio/Product.php" />
+        <option value="$PROJECT_DIR$/src/MelhorEnvio/MelhorEnvio.php" />
       </list>
     </option>
   </component>
@@ -160,18 +192,18 @@
       <option name="presentableId" value="Default" />
       <updated>1612986260144</updated>
       <workItem from="1612986264110" duration="4878000" />
-      <workItem from="1623416590309" duration="6697000" />
+      <workItem from="1623416590309" duration="20196000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11575000" />
+    <option name="totallyTimeSpent" value="25074000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1374" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18910742" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16490166" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -184,7 +216,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3289689" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -205,15 +237,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MelhorEnvio/SendCurl.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="33" column="11" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
+        <state relative-caret-position="152">
+          <caret line="35" column="38" lean-forward="true" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MelhorEnvio/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="123" column="7" lean-forward="true" selection-start-line="123" selection-start-column="7" selection-end-line="123" selection-end-column="7" />
+          <folding>
+            <element signature="e#344#500#0#PHP" />
+            <element signature="e#620#696#0#PHP" />
+            <element signature="e#1182#1799#0#PHP" />
+            <element signature="e#1333#1348#0#PHP" />
+            <element signature="e#1553#1719#0#PHP" />
+            <element signature="e#1957#2426#0#PHP" />
+            <element signature="e#2750#2817#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MelhorEnvio/Product.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="54" column="28" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="28" />
+          <folding>
+            <element signature="e#225#305#0#PHP" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MelhorEnvio/MelhorEnvio.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="192" selection-start-line="192" selection-end-line="192" />
+        <state relative-caret-position="252">
+          <caret line="507" column="7" lean-forward="true" selection-start-line="507" selection-start-column="7" selection-end-line="507" selection-end-column="7" />
           <folding>
             <element signature="e#807#1077#0#PHP" />
             <element signature="e#820#957#0#PHP" />
@@ -222,18 +280,13 @@
             <element signature="e#2606#3815#0#PHP" />
             <element signature="e#4953#6332#0#PHP" />
             <element signature="e#6132#6252#0#PHP" />
+            <element signature="e#7674#11154#0#PHP" />
+            <element signature="e#8953#9615#0#PHP" />
+            <element signature="e#6857#6895#0#PHP" />
+            <element signature="e#11461#14184#0#PHP" />
+            <element signature="e#14923#16349#0#PHP" />
+            <element signature="e#16003#16044#0#PHP" />
             <element signature="e#6382#6461#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MelhorEnvio/Product.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
-          <folding>
-            <element signature="e#225#305#0#PHP" />
-            <element signature="e#487#1017#0#PHP" />
           </folding>
         </state>
       </provider>
