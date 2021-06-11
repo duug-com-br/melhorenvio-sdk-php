@@ -2,79 +2,93 @@
 
 namespace MelhorEnvio;
 
-// Inicia a Classe
+/**
+ * Classe responsável por realizar as solicitações com a
+ * plataforma melhor envio. É possivel calcular Frete e
+ * gerar etiquetas.
+ * ---------------------------------------------------------
+ * Class MelhorEnvio
+ * @package MelhorEnvio
+ * @author igorcacerez
+ */
 class MelhorEnvio
 {
-    // Privates
-    private $clientID;
-    private $token;
-    private $code;
-    private $nomeApp;
-    private $emailTecnico;
-    private $baseUrl; // Sandbox ou Producao
+    // Identificação do app
+    private $clientId;
+    private $secretKey;
+    private $nameApp;
+    private $email; // Email tecnico
+
+    // Constantes
+    private $url = "https://www.melhorenvio.com.br/";
+    private $urlRastreio = "https://www.melhorrastreio.com.br/rastreio/";
+
+    // Url de retorno da plataforma
+    private $urlCallback;
+
+    // Informações do app já instalado
+    private $accessToken;
 
 
-    // Método construtor
-    public function __construct($tipo = "sandbox")
+    /**
+     * MelhorEnvio constructor.
+     *
+     * Método construtor responsável por adicionar as constantes os valores
+     * de configuração e credenciais do app utilizado.
+     *
+     * @param $id // Cliente ID
+     * @param $secret // Secret Key
+     * @param $nameApp // Nome do aplicativo
+     * @param $email // Email do técnico
+     */
+    public function __construct($id, $secret, $nameApp, $email)
     {
-        // Verifica o tipo
-        if($tipo == "producao")
-        {
-            // Base Url - Sandbox
-            $this->baseUrl = "https://sandbox.melhorenvio.com.br/";
-        }
-        else
-        {
-            // Base Url - Produto
-            $this->baseUrl = "https://www.melhorenvio.com.br/";
-        }
+        // Repassa as configurações iniciais para as globais
+        $this->clientId = $id;
+        $this->secretKey = $secret;
+        $this->nameApp = $nameApp;
+        $this->email = $email;
 
     } // End >> fun::__construct()
 
 
     /**
-     * @param mixed $clientID
+     * Método responsável por alterar a url de requisições para
+     * a url de teste da plataforma.
      */
-    public function setClientID($clientID)
+    public function activeSandbox()
     {
-        $this->clientID = $clientID;
-    } // End >> fun::setClientID()
+        // Base Url - Sandbox
+        $this->baseUrl = "https://sandbox.melhorenvio.com.br/";
+    } // End >> fun::activeSandbox()
 
 
     /**
-     * @param mixed $token
+     * Método responsável por receber a url de retorno da
+     * plataforma e salva na constante especifica.
+     *
+     * @param $url
      */
-    public function setToken($token)
+    public function setCallbackURL($url)
     {
-        $this->token = $token;
-    } // End >> fun::setToken()
+        // Salva a informação na constante
+        $this->urlCallback = $url;
+
+    } // End >> fun::setCallbackURL()
 
 
     /**
-     * @param mixed $code
+     * Método responsável por salvar o Access Token
+     * na constante.
+     *
+     * @param $token
      */
-    public function setCode($code)
+    public function setAccessToken($token)
     {
-        $this->code = $code;
-    } // End >> fun::setCode()
+        // Salva o Access Token
+        $this->accessToken = $token;
 
-
-    /**
-     * @param mixed $nomeApp
-     */
-    public function setNomeApp($nomeApp)
-    {
-        $this->nomeApp = $nomeApp;
-    } // End >> fun::setNomeApp()
-
-
-    /**
-     * @param mixed $emailTecnico
-     */
-    public function setEmailTecnico($emailTecnico)
-    {
-        $this->emailTecnico = $emailTecnico;
-    } // End >> fun::setToken()
+    } // End >> fun::setAccessToken()
 
 
     /**
@@ -82,39 +96,169 @@ class MelhorEnvio
      * autorizar o app a possui permissão sobre a conta do melhor envio.
      * Caso não seja informado a permissão, será solicitado as permissões padrao.
      * ---------------------------------------------------------------------------------------
-     * @param $callback | Url de retorno
-     * @param null $state
-     * @param null $permissoes
+     * @param null $state // Status a ser retornado
+     * @param null $permission // Lista de permissões
+     * @param bool $redirect // Informa se deve redirecionar ou retornar a url gerada
+     * ---------------------------------------------------------------------------------------
+     * @return string
      */
-    public function solicitaAutorizacao($callback, $state = null, $permissoes = null)
+    public function requestAuthorization($state = null, $permission = null, $redirect = true)
     {
         // Verifica se informou permissão, senão habilita as padrões
-        $permissoes = (!empty($permissoes) ? $permissoes : "cart-write notifications-read orders-read purchases-read shipping-calculate shipping-cancel shipping-checkout shipping-companies shipping-generate shipping-preview shipping-print shipping-tracking ecommerce-shipping");
+        $permission = (!empty($permission) ? $permission : "cart-read cart-write companies-read companies-write coupons-read coupons-write notifications-read orders-read products-read products-write purchases-read shipping-calculate shipping-cancel shipping-checkout shipping-companies shipping-generate shipping-preview shipping-print shipping-share shipping-tracking ecommerce-shipping transactions-read users-read users-write");
 
         // Verifica se vai possui state
         $state = (!empty($state) ? "&state=" . $state : "");
 
-        // Verifica se possui o cliente id
-        if(!empty($this->clientID))
-        {
-            // Configura a url de redirecionamento
-            $urlRedirect = $this->baseUrl . "oauth/authorize?client_id={$this->clientID}&redirect_uri={$callback}&response_type=code{$state}&scope={$permissoes}";
+        // Configura a url de redirecionamento
+        $urlRedirect = $this->url . "oauth/authorize?client_id={$this->clientId}&redirect_uri={$this->urlCallback}&response_type=code{$state}&scope={$permission}";
 
+        // Verifica se deve redirecionar ou retornar a url
+        if($redirect == true)
+        {
             // Redireciona
             header("Location: " . $urlRedirect);
         }
         else
         {
-            // Msg
-            echo "Cliente id não informado.";
-        } // Error >> Cliente id não informado.
+            // Retorna a url configurada
+            return $urlRedirect;
+        }
 
-    } // End >> fun::solicitaAutorizacao()
+    } // End >> fun::requestAuthorization()
 
-    // https://docs.menv.io/?version=latest#03becc90-8b38-47bd-ba14-7994017462f0
-    public function solicitaToken()
+
+
+    /**
+     * Método responsável por solicitar um token de acesso na plataforma do melhor envio.
+     * Esse método é utilizado quando nunca foi solicitado um token antes.
+     * ---------------------------------------------------------------------------------------
+     *
+     * -- Exemplo de retorno
+     *
+     *  (Array)
+     *  [
+     *     "error"  => [true ou false]  // Informa se teve algum erro na solicitação
+     *     "data" => [
+     *          "accessToken" => Token gerado e que será utilizado nas requisições
+     *          "tokenValidate" => Data de validade do token (+ 30 dias)
+     *          "refreshToken" => Token utilizado para renovar o token quando ele estiver vencido
+     *      ]
+     *  ]
+     *
+     * ---------------------------------------------------------------------------------------
+     * @param $code // Codigo retornado pela plaforma quando solicita a permissão
+     * ---------------------------------------------------------------------------------------
+     * @return array
+     */
+    public function requestToken($code)
     {
-        
-    }
+        // Retorno
+        return $this->requestoOrRefreshToken($code);
+
+    } // End >> fun::requestToken()
+
+
+    /**
+     * Método responsável por solicitar a renovação de um token de acesso já existente
+     * na plataforma do melhor envio.
+     * ---------------------------------------------------------------------------------------
+     *
+     * -- Exemplo de retorno
+     *
+     *  (Array)
+     *  [
+     *     "error"  => [true ou false]  // Informa se teve algum erro na solicitação
+     *     "data" => [
+     *          "accessToken" => Token gerado e que será utilizado nas requisições
+     *          "tokenValidate" => Data de validade do token (+ 30 dias)
+     *          "refreshToken" => Token utilizado para renovar o token quando ele estiver vencido
+     *      ]
+     *  ]
+     *
+     * ---------------------------------------------------------------------------------------
+     * @param $refreshToken // Token de atualização do token de solicitação
+     * ---------------------------------------------------------------------------------------
+     * @return array
+     */
+    public function refreshToken($refreshToken)
+    {
+        // Retorno
+        return $this->requestoOrRefreshToken(null, $refreshToken);
+
+    } // End >> fun::refreshToken()
+
+
+    public function calculate($cepOrigem, $cepDestino)
+    {
+        //
+
+    } // End >> fun::calculate()
+
+
+    /**
+     * Método interno responsável por realizar a configuração e a requisição
+     * tanto para gerar um token novo como para renovar um token já existente.
+     * --------------------------------------------------------------------------
+     * @param null $code
+     * @param null $refreshToken
+     * @return array
+     */
+    private function requestoOrRefreshToken($code = null, $refreshToken = null)
+    {
+        // Variavel de retorno
+        $retorno = ["error" => true, "data" => null]; // Pré definida como erro.
+
+        // Configura a url
+        $url = $this->url . "oauth/token";
+
+        // Conteudo a ser informado na solicitação
+        $conteudo = [
+            "grant_type" => "authorization_code",
+            "client_id" => $this->clientId,
+            "client_secret" => $this->secretKey,
+
+        ];
+
+        // Verifica o tipo da solicitacao
+        if(!empty($code))
+        {
+            $conteudo["redirect_uri"] = $this->urlCallback;
+            $conteudo["code"] = $code;
+        }
+        else
+        {
+            $conteudo["grant_type"] = "refresh_token";
+            $conteudo["refresh_token"] = $refreshToken;
+        }
+
+        // Instancia o objeto de requisição
+        $SendCurl = new SendCurl($this->nameApp, $this->email);
+
+        // Realiza a solicitação
+        $resposta = $SendCurl->resquest($url, "POST", null, $conteudo);
+
+        // Decodifica o json
+        $resposta = (!empty($resposta) ? json_decode($resposta) : null);
+
+        // Verifica se retornou o token
+        if(!empty($resposta->access_token))
+        {
+            // Retorna como sucesso
+            $retorno = [
+                "error" => false,
+                "data" => [
+                    "accessToken" => $resposta->access_token,
+                    "tokenValidate" => date("Y-m-d", strtotime("+30 days")),
+                    "refreshToken" => $resposta->refresh_token
+                ]
+            ];
+        }
+
+        // Retorno
+        return $retorno;
+
+    } // End >> fun::requestoOrRefreshToken()
+
 
 } // End >> Class::MelhorEnvio

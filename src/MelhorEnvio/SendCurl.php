@@ -31,10 +31,22 @@ class SendCurl
      * ----------------------------------------------------------------------------
      * @return array $response
      */
-    public function resquest($url, $metodo = "POST", array $header, array $conteudo)
+    public function resquest($url, $metodo = "POST", $header = null, $conteudo)
     {
-        // Informa itens padrões no header
-        $header[] = ["Accept: application/json", "User-Agent: Aplicação (email para contato técnico)"];
+        // Verifica se possui conteudo
+        if(!empty($header))
+        {
+            // Informa itens padrões no header
+            array_push($header, "Accept: application/json", "User-Agent: {$this->nomeApp} ({$this->emailTecnico})");
+        }
+        else
+        {
+            // Informa itens padrões no header
+            $header = [
+                "Accept: application/json",
+                "User-Agent: {$this->nomeApp} ({$this->emailTecnico})"
+            ];
+        }
 
         // Inicia o curl
         $curl = curl_init();
