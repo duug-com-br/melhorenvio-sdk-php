@@ -506,7 +506,7 @@ class MelhorEnvio
      * @param array $ids
      * @return array
      */
-    public function print(array $ids)
+    public function printTag(array $ids)
     {
         // Gera o pagamento
         $retorno = ["error" => true, "data" => null];
