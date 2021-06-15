@@ -556,6 +556,73 @@ class MelhorEnvio
     } // End >> fun::print()
 
 
+
+    /**
+     * Método responsável por solicitar os códigos de rastreio
+     * de uma etiqueta previamente gerada.
+     * ----------------------------------------------------------------------
+     * Exemplo retorno em caso de sucesso:
+     *
+     * (Array)
+     * [
+     *    "error" => false,
+     *    "message" => "success",
+     *    "data" => [
+     *        {"tracking" => "CODIGO DE RASTREIO"}
+     *    ]
+     * ]
+     *
+     * ----------------------------------------------------------------------
+     * @param array $ids
+     * @return array
+     */
+    public function getTracking(array $ids)
+    {
+        // Variaveis
+        $retorno = ["error" => true, "data" => null];
+
+        // Configura a url
+        $url = $this->url . "api/v2/me/shipment/tracking";
+
+        // Configura o conteudo
+        $conteudo = new \StdClass();
+        $conteudo->orders = $ids;
+
+        // Codifica o conteudo em json
+        $conteudo = json_encode($conteudo);
+
+        // Header
+        $header = ["Authorization: Bearer {$this->accessToken}", "Content-Type: application/json"];
+
+        // Realiza a requisição
+        $resposta = (new SendCurl($this->nameApp, $this->email))->resquest($url, "POST", $header, $conteudo);
+
+        // Decodifica
+        $resposta = json_decode($resposta);
+
+        // Verifica se deu erro
+        if(!empty($resposta->errors) || !empty($resposta->error))
+        {
+            // Explica o erro ocorrido
+            $retorno["data"] = (!empty($resposta->errors) ? $resposta->errors : $resposta->error);
+            $retorno["message"] = "Ocorreu um erro ao solicitar códgio de rastreio.";
+        }
+        else
+        {
+            // Array de sucesso
+            $retorno = [
+                "error" => false,
+                "message" => "success",
+                "data" => $resposta
+            ];
+        }
+
+        // Retorno
+        return $retorno;
+
+    } // End >> fun::getTracking()
+
+
     /**
      * Método interno responsável por realizar a configuração e a requisição
      * tanto para gerar um token novo como para renovar um token já existente.
