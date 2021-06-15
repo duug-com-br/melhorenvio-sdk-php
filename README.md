@@ -23,6 +23,16 @@
       * [Recuperar Código de Rastreio](#recuperar-código-de-rastreio)
 <!--te-->
 
+## Pré-requisitos
+    
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+
+- [Composer](https://getcomposer.org/)
+- [Servidor Apache](https://www.apachefriends.org/index.html)
+
+É necessario possuir um cadastro na plataforma [Melhor Envio](https://melhorenvio.com.br/)
+
+
 ## Instalação
 
 Para instalar esse componente em seu projeto utilize o composer. ````composer require duug-com-br/melhorenvio-sdk-php````
@@ -319,3 +329,7 @@ Veja um exemplo do retorno na array data:
 ````
 
 Caso seja apenas um pacote será retornado apenas 1 item no array contendo o código de rastreio.
+
+
+<h2>Licença</h2>
+Lançado sob a [MIT license](http://www.opensource.org/licenses/MIT).
