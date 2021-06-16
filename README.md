@@ -332,4 +332,4 @@ Caso seja apenas um pacote será retornado apenas 1 item no array contendo o có
 
 
 <h2>Licença</h2>
-Lançado sob a [MIT license](http://www.opensource.org/licenses/MIT).
+Lançado sob a licença [MIT](http://www.opensource.org/licenses/MIT).
