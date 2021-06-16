@@ -59,7 +59,7 @@ class MelhorEnvio
     public function activeSandbox()
     {
         // Base Url - Sandbox
-        $this->baseUrl = "https://sandbox.melhorenvio.com.br/";
+        $this->url = "https://sandbox.melhorenvio.com.br/";
     } // End >> fun::activeSandbox()
 
 
