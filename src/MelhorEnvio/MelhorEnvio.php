@@ -389,7 +389,7 @@ class MelhorEnvio
 
             // Adiciona o produto
             $conteudo->products[] = [
-                "name" => $produto->nome,
+                "name" => $produto->name,
                 "quantity" => $produto->quantity,
                 "unitary_value" => $produto->insurance_value
             ];

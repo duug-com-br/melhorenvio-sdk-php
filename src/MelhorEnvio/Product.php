@@ -19,7 +19,7 @@ class Product
      */
     public function getProducts()
     {
-        return $this->products;
+        return  json_decode(json_encode($this->products));
     } // End >> fun::getProducts()
 
 
