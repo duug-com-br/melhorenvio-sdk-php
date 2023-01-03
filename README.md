@@ -2,7 +2,7 @@
 
 <p align="center">
     <img src="https://img.shields.io/static/v1?label=license&message=MIT&color=0d7bbd" />
-    <img src="https://img.shields.io/static/v1?label=version&message=BETA&color=0d7bbd" />
+    <img src="https://img.shields.io/static/v1?label=version&message=1.2.1&color=0d7bbd" />
 </p>
 
 
