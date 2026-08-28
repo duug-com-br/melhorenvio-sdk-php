@@ -49,8 +49,7 @@ class MelhorEnvio
         $this->nameApp = $nameApp;
         $this->email = $email;
 
-    } // End >> fun::__construct()
-
+    }
 
     /**
      * Método responsável por alterar a url de requisições para
@@ -219,7 +218,7 @@ class MelhorEnvio
      * ----------------------------------------------------------------------
      * @return array
      */
-    public function calculate($cepOrigem, $cepDestino, Product $Products)
+    public function calculate($cepOrigem, $cepDestino, Product $Products, $avisoRecebimento = false, $maoPropria = false, array $services = null)
     {
         // Variavel de retorno
         $retorno = ["error" => true, "data" => null];
@@ -251,11 +250,24 @@ class MelhorEnvio
             $conteudo->to = new \StdClass();
             $conteudo->to->postal_code = $cepDestino;
 
-            // Percorre os produtos
-            foreach ($produtos as $produto)
-            {
-                // Adiciona no array
+            // Percorre os produtos e adiciona ao array
+            foreach ($produtos as $produto) {
                 $conteudo->products[] = $produto;
+            }
+
+            // Aplicar aviso de recebimento
+            if ($avisoRecebimento) {
+                $conteudo->options->receipt = true;
+            }
+            
+            // Aplicar aviso mão propria
+            if ($maoPropria) {
+                $conteudo->options->own_hand = true;
+            }
+
+            // Definir códigos de serviços utilizados
+            if (empty($services) == false) {
+                $conteudo->services = implode(',', $services);
             }
 
             // Converte em json o conteudo
@@ -621,6 +633,64 @@ class MelhorEnvio
         return $retorno;
 
     } // End >> fun::getTracking()
+
+
+    /**
+     * Método responsável por listar os códigos de serviços disponiveis para o
+     * cálculo de frete.
+     * ----------------------------------------------------------------------
+     * Exemplo retorno em caso de sucesso:
+     *
+     * (Array)
+     * [
+     *    "error" => false,
+     *    "message" => "success",
+     *    "data" => [
+     *        {"id" => "CODIGO DO SERVICO", "name" => "NOME DO SERVICO", "status" => "available"}
+     *    ]
+     * ]
+     *
+     * ----------------------------------------------------------------------
+     * @return array
+     */
+    public function getServices()
+    {
+        // Variaveis
+        $retorno = ["error" => true, "data" => null];
+
+        // Configura a url
+        $url = $this->url . "api/v2/me/shipment/services";
+
+        // Header
+        $header = ["Authorization: Bearer {$this->accessToken}", "Content-Type: application/json"];
+
+        // Realiza a requisição
+        $resposta = (new SendCurl($this->nameApp, $this->email))->resquest($url, "GET", $header);
+
+        // Decodifica
+        $resposta = json_decode($resposta);
+
+        // Verifica se deu erro
+        if(!empty($resposta->errors) || !empty($resposta->error))
+        {
+            // Explica o erro ocorrido
+            $retorno["data"] = (!empty($resposta->errors) ? $resposta->errors : $resposta->error);
+            $retorno["message"] = "Ocorreu um erro ao listar os códigos de serviço.";
+        }
+        else
+        {
+            // Array de sucesso
+            $retorno = [
+                "error" => false,
+                "message" => "success",
+                "data" => $resposta
+            ];
+        }
+
+        // Retorno
+        return $retorno;
+
+    } // End >> fun::getServices()
 
 
     /**

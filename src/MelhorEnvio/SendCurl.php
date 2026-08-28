@@ -31,7 +31,7 @@ class SendCurl
      * ----------------------------------------------------------------------------
      * @return array $response
      */
-    public function resquest($url, $metodo = "POST", $header = null, $conteudo)
+    public function resquest($url, $metodo = "POST", $header = null, $conteudo = null)
     {
         // Verifica se possui conteudo
         if(!empty($header))
